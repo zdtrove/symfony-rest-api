@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Repository\TaskListRepository;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 
 class ListController extends AbstractFOSRestController
 {
+    public function __construct(TaskListRepository $taskListRepository) {
+        $this->taskListRepository = $taskListRepository;
+    }
     public function getListsAction() {
-
+        return $this->taskListRepository->findAll();
     }
 
     public function getListAction(int $id) {
@@ -26,7 +30,7 @@ class ListController extends AbstractFOSRestController
 
     }
 
-    public function stateListsAction(int $id) {
+    public function backgroundListsAction(int $id) {
 
     }
 }
